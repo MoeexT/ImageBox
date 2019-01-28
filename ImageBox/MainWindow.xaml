@@ -8,35 +8,50 @@
         Title="ImageBox" Height="750" Width="1250">
     <Grid>
         <!--显示图片-->
-        <Image x:Name="image" HorizontalAlignment="Left" Height="701" Margin="0,10,0,0" VerticalAlignment="Top" Width="1051"/>
+        <Image x:Name="CurrentImage" 
+               HorizontalAlignment="Left" 
+               Height="701" Margin="10,10,0,10" 
+               VerticalAlignment="Top" 
+               Width="1051"
+               MouseMove="OnMouseMove"
+               />
 
         <!--复选框，显示默认图片-->
         <CheckBox Content="显示默认图片" HorizontalAlignment="Right" Margin="0,696,10.2,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
 
         <!--按钮们-->
-        <Button Content="打开图片" HorizontalAlignment="Right" Margin="0,532,103.2,0" VerticalAlignment="Top" Width="60" Click="Open_Image" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"/>
-        <Button Content="生成" HorizontalAlignment="Right" Margin="0,532,31.2,0" VerticalAlignment="Top" Width="60" Click="Generate_Value" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"/>
-        <!--
-        <Button Content="显示默认图片" HorizontalAlignment="Right" Margin="0,391,81.2,0" VerticalAlignment="Top" Width="81" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Show_Default_Image"/>
-        <Button Content="隐藏" HorizontalAlignment="Left" Margin="1167,393,0,0" VerticalAlignment="Top" Width="54" Click="Hide_Image"/>
-        -->
+        <Button Content="打开图片" HorizontalAlignment="Right" Margin="0,532,75.2,0" VerticalAlignment="Top" Width="60" Click="Open_Image" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"/>
+        <Button Content="清除图像"  HorizontalAlignment="Right" Margin="0,532,10.2,0" VerticalAlignment="Top" Width="60" Click="Clear_Image" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"/>
 
         <!--需要显示的信息-->
-        <TextBlock x:Name="coordinate_x" HorizontalAlignment="Right" Margin="0,424,137.2,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Height="18"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,424,106.2,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Height="18"/>
         <!--<TextBox x:Name="value_x" HorizontalAlignment="Right" Height="18" Margin="0,268,41.2,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50"/>-->
-        <Label x:Name="value_x" Content="0" HorizontalAlignment="Right" Height="24" Margin="0,418,47.2,0" VerticalAlignment="Top" Width="44"/>
+        <Label x:Name="Value_X" Content="0" HorizontalAlignment="Right" Height="24" Margin="0,418,10.2,0" VerticalAlignment="Top" Width="44"/>
 
-        <TextBlock x:Name="coordinate_y" HorizontalAlignment="Right" Margin="0,448,138.2,0" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Height="18"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,448,105.2,0" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Height="18"/>
         <!--<TextBox x:Name="value_y" HorizontalAlignment="Right" Height="18" Margin="0,291,41.2,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50"/>-->
-        <Label x:Name="value_y" Content="0" HorizontalAlignment="Right" Height="24" Margin="0,442,47.2,0" VerticalAlignment="Top" Width="44"/>
+        <Label x:Name="Value_Y" Content="0" HorizontalAlignment="Right" Height="24" Margin="0,442,10.2,0" VerticalAlignment="Top" Width="44"/>
 
-        <TextBlock x:Name="marquee_length" HorizontalAlignment="Right" Margin="0,477,111.2,0" TextWrapping="Wrap" Text="Length" VerticalAlignment="Top" Height="18"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,476,79.2,0" TextWrapping="Wrap" Text="Width" VerticalAlignment="Top" Height="18"/>
         <!--<TextBox x:Name="value_length" HorizontalAlignment="Right" Height="18" Margin="0,328,41.2,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50"/>-->
-        <Label x:Name="value_length" Content="0" HorizontalAlignment="Right" Height="24" Margin="0,471,47.2,0" VerticalAlignment="Top" Width="44"/>
+        <Label x:Name="Value_Width" Content="0" HorizontalAlignment="Right" Height="24" Margin="0,471,10.2,0" VerticalAlignment="Top" Width="44"/>
 
-        <TextBlock x:Name="marquee_height" HorizontalAlignment="Right" Margin="0,501,112.2,0" TextWrapping="Wrap" Text="Height" VerticalAlignment="Top" Height="18"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,501,75.2,0" TextWrapping="Wrap" Text="Height" VerticalAlignment="Top" Height="18"/>
         <!--<TextBox x:Name="value_height" HorizontalAlignment="Right" Height="18" Margin="0,352,41.2,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50"/>-->
-        <Label x:Name="value_height" Content="0" HorizontalAlignment="Right" Height="24" Margin="0,495,47.2,0" VerticalAlignment="Top" Width="44"/>
+        <Label x:Name="Value_Height" Content="0" HorizontalAlignment="Right" Height="24" Margin="0,495,10.2,0" VerticalAlignment="Top" Width="44"/>
+
+        <!--文件信息-->
+        <TextBlock HorizontalAlignment="Right" Margin="0,299,64.2,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59"><Run Text="文件名"/><Run Text="："/></TextBlock>
+        <TextBox x:Name="File_Name" HorizontalAlignment="Right" Height="23" Margin="0,319,3.2,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="120"/>
+        
+        <TextBlock HorizontalAlignment="Right" Margin="0,347,75.2,0" TextWrapping="Wrap" Text="图像宽度" VerticalAlignment="Top"/>
+        <Label x:Name="Image_Width" Content="0" HorizontalAlignment="Right" Margin="0,342,10.2,0" VerticalAlignment="Top" Width="44"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,372,75.2,0" TextWrapping="Wrap" Text="图像高度" VerticalAlignment="Top"/>
+        <Label x:Name="Image_Height" Content="0" HorizontalAlignment="Right" Margin="0,370,10.2,0" VerticalAlignment="Top" Width="44"/>
+
+        
+        
+
 
 
 
