@@ -14,12 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using OpenCvSharp;
+
 namespace ImageBox
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : System.Windows.Window
     {
         // private String fileName;
         private BitmapImage bitmapImage;
@@ -100,6 +102,15 @@ namespace ImageBox
             Value_Y.Content = (int)(e.GetPosition(CurrentImage).Y * height / CurrentImage.Height);
         }
 
+        private void OnDragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                MessageBox.Show(((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString());
+            }
+        }
+
+        // TODO 已经解决了拖拽问题；1. 没有显示图片也可以拖拽（Image的尺寸）；2. 拖拽选框、计算长宽及原点
         
     }
 }

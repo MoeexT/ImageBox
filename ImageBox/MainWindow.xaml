@@ -10,10 +10,13 @@
         <!--显示图片-->
         <Image x:Name="CurrentImage" 
                HorizontalAlignment="Left" 
-               Height="701" Margin="10,10,0,10" 
+               Height="701" 
+               Margin="10,10,0,10" 
                VerticalAlignment="Top" 
                Width="1051"
+               AllowDrop="True"
                MouseMove="OnMouseMove"
+               Drop="OnDragEnter"
                />
 
         <!--复选框，显示默认图片-->
