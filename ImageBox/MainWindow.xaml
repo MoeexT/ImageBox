@@ -5,65 +5,91 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageBox"
         mc:Ignorable="d"
-        Title="ImageBox" Height="750" Width="1250">
+        Title="ImageBox" Height="650" Width="1150">
     <Grid>
         <!--显示图片-->
         <Image x:Name="CurrentImage" 
                HorizontalAlignment="Left" 
-               Height="701" 
+               Width="900" 
+               Height="600"
                Margin="10,10,0,10" 
-               VerticalAlignment="Top" 
-               Width="1051"
+               
                AllowDrop="True"
                MouseMove="OnMouseMove"
                Drop="OnDragEnter"
                />
 
         <!--复选框，显示默认图片-->
-        <CheckBox Content="显示默认图片" HorizontalAlignment="Right" Margin="0,696,10.2,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+
 
         <!--按钮们-->
-        <Button Content="打开图片" HorizontalAlignment="Right" Margin="0,532,75.2,0" VerticalAlignment="Top" Width="60" Click="Open_Image" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"/>
-        <Button Content="清除图像"  HorizontalAlignment="Right" Margin="0,532,10.2,0" VerticalAlignment="Top" Width="60" Click="Clear_Image" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"/>
+        <Grid HorizontalAlignment="Left" Margin="969,502,0,0" VerticalAlignment="Top" Width="120">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="打开图片" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Click="Open_Image" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Height="20"/>
+            <Button Content="清除图像"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Click="Clear_Image" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Height="20" Grid.Column="1"/>
+            <CheckBox x:Name="ShowDefaultImage" Content="显示默认图片" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" HorizontalAlignment="Left" Height="15" Grid.Row="1" Width="95" Margin="5,5,0,0" Grid.ColumnSpan="2"/>
+        </Grid>
 
         <!--需要显示的信息-->
-        <TextBlock HorizontalAlignment="Right" Margin="0,424,106.2,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Height="18"/>
-        <!--<TextBox x:Name="value_x" HorizontalAlignment="Right" Height="18" Margin="0,268,41.2,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50"/>-->
-        <Label x:Name="Value_X" Content="0" HorizontalAlignment="Right" Height="24" Margin="0,418,10.2,0" VerticalAlignment="Top" Width="44"/>
+        <Grid ShowGridLines="False" HorizontalAlignment="Left" Height="242" Margin="964,221,0,0" VerticalAlignment="Top" Width="125">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24*"/>
+                <RowDefinition Height="24*"/>
+                <RowDefinition Height="24*"/>
+                <RowDefinition Height="24*"/>
+                <RowDefinition Height="24*"/>
+                <RowDefinition Height="24*"/>
+                <RowDefinition Height="24*"/>
+                <RowDefinition Height="24*"/>
+                <RowDefinition Height="24*"/>
+                <RowDefinition Height="24*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="文档属性" HorizontalAlignment="Left" Margin="-5,-2,0,0" VerticalAlignment="Top" Width="62" Height="26"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" Height="15" Margin="10,4,0,0" Grid.Row="1" Grid.ColumnSpan="2"><Run Text="文件名："/></TextBlock>
+            <TextBox x:Name="File_Name" HorizontalAlignment="Left" Height="24" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="115" Grid.ColumnSpan="2" Grid.Row="2" Margin="10,0,-0.2,0"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="宽度" VerticalAlignment="Top" Margin="10,5,0,0" Width="25" Height="16" Grid.Row="3"/>
+            <Label x:Name="Image_Width" Content="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Margin="62,0,0,0" Height="24" Grid.Row="3" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="高度" VerticalAlignment="Top" Margin="10,5,0,0" Width="25" Height="16" Grid.Row="4"/>
+            <Label x:Name="Image_Height" Content="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Margin="62,0,0,0" Height="24" Grid.Row="4" Grid.ColumnSpan="2"/>
 
-        <TextBlock HorizontalAlignment="Right" Margin="0,448,105.2,0" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Height="18"/>
-        <!--<TextBox x:Name="value_y" HorizontalAlignment="Right" Height="18" Margin="0,291,41.2,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50"/>-->
-        <Label x:Name="Value_Y" Content="0" HorizontalAlignment="Right" Height="24" Margin="0,442,10.2,0" VerticalAlignment="Top" Width="44"/>
+            <Label Content="图像信息" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" Width="62" Margin="-5,0,0,0"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Height="18" Width="8" Margin="10,5.2,0,0" Grid.Row="6"/>
+            <Label x:Name="Value_X" Content="0" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="44" Margin="62,0.2,0,0" Grid.RowSpan="2" Grid.Row="6" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Height="18" Width="7" Margin="10,5.2,0,0" Grid.Row="7"/>
+            <Label x:Name="Value_Y" Content="0" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="44" Margin="62,0.2,0,0" Grid.Row="7" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Width" VerticalAlignment="Top" Height="18" Width="35" Margin="10,5.2,0,0" Grid.Row="8"/>
+            <Label x:Name="Value_Width" Content="0" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="44" Margin="62,0.4,0,0" Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height" VerticalAlignment="Top" Height="18" Width="39" Margin="10,5.2,0,0" Grid.Row="9"/>
+            <Label x:Name="Value_Height" Content="0" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="44" Margin="62,0.4,0,0" Grid.Row="9" Grid.ColumnSpan="2"/>
+        </Grid>
 
-        <TextBlock HorizontalAlignment="Right" Margin="0,476,79.2,0" TextWrapping="Wrap" Text="Width" VerticalAlignment="Top" Height="18"/>
-        <!--<TextBox x:Name="value_length" HorizontalAlignment="Right" Height="18" Margin="0,328,41.2,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50"/>-->
-        <Label x:Name="Value_Width" Content="0" HorizontalAlignment="Right" Height="24" Margin="0,471,10.2,0" VerticalAlignment="Top" Width="44"/>
+        <!--Debug信息-->
+        <Grid HorizontalAlignment="Left" Margin="960,152,0,408" VerticalAlignment="Top" Width="174">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-        <TextBlock HorizontalAlignment="Right" Margin="0,501,75.2,0" TextWrapping="Wrap" Text="Height" VerticalAlignment="Top" Height="18"/>
-        <!--<TextBox x:Name="value_height" HorizontalAlignment="Right" Height="18" Margin="0,352,41.2,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50"/>-->
-        <Label x:Name="Value_Height" Content="0" HorizontalAlignment="Right" Height="24" Margin="0,495,10.2,0" VerticalAlignment="Top" Width="44"/>
-
-        <!--文件信息-->
-        <TextBlock HorizontalAlignment="Right" Margin="0,299,64.2,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59"><Run Text="文件名"/><Run Text="："/></TextBlock>
-        <TextBox x:Name="File_Name" HorizontalAlignment="Right" Height="23" Margin="0,319,3.2,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="120"/>
-        
-        <TextBlock HorizontalAlignment="Right" Margin="0,347,75.2,0" TextWrapping="Wrap" Text="图像宽度" VerticalAlignment="Top"/>
-        <Label x:Name="Image_Width" Content="0" HorizontalAlignment="Right" Margin="0,342,10.2,0" VerticalAlignment="Top" Width="44"/>
-        <TextBlock HorizontalAlignment="Right" Margin="0,372,75.2,0" TextWrapping="Wrap" Text="图像高度" VerticalAlignment="Top"/>
-        <Label x:Name="Image_Height" Content="0" HorizontalAlignment="Right" Margin="0,370,10.2,0" VerticalAlignment="Top" Width="44"/>
-
-        
-        
-
-
-
-
-
-
-
-
-
-
+            <Button Grid.Row="1" Grid.Column="0" Content="Image长宽" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="Debug_Button_Click" Margin="0,2.8,0,-19.4" />
+            <Label x:Name="Debug_Info" Grid.Row="1" Content="Image" HorizontalAlignment="Left" Margin="20,3.2,-10.2,-26.8" VerticalAlignment="Top" Grid.Column="1"/>
+            <Label Content="Debug" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </Grid>
+        <Button Content="旋转" HorizontalAlignment="Left" Margin="969,477,0,0" VerticalAlignment="Top" Width="75" Click="Flip_Image"/>
 
     </Grid>
 </Window>
