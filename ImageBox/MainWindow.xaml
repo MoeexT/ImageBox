@@ -13,7 +13,6 @@
                Width="900" 
                Height="600"
                Margin="10,10,0,10" 
-               
                AllowDrop="True"
                MouseMove="OnMouseMove"
                Drop="OnDragEnter"
@@ -23,18 +22,20 @@
 
 
         <!--按钮们-->
-        <Grid HorizontalAlignment="Left" Margin="969,502,0,0" VerticalAlignment="Top" Width="120">
+        <Grid ShowGridLines="False" HorizontalAlignment="Left" Margin="964,509,0,0" VerticalAlignment="Top" Width="137" Height="80">
             <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
-                <RowDefinition/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="打开图片" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Click="Open_Image" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Height="20"/>
-            <Button Content="清除图像"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Click="Clear_Image" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Height="20" Grid.Column="1"/>
-            <CheckBox x:Name="ShowDefaultImage" Content="显示默认图片" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" HorizontalAlignment="Left" Height="15" Grid.Row="1" Width="95" Margin="5,5,0,0" Grid.ColumnSpan="2"/>
+            <Button Content="打开图片" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Click="Open_Image" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Height="20" Margin="5,5,0,0" Grid.Row="1"/>
+            <Button Content="清除图像"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Click="Clear_Image" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Height="20" Grid.Column="1" Margin="1.2,5,0,0" Grid.Row="1"/>
+            <Button Content="旋转图像" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Click="Flip_Image" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Height="20" Margin="5,5,0,0" />
+            <CheckBox x:Name="ShowDefaultImage" Content="显示默认图片" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" HorizontalAlignment="Left" Height="15" Grid.Row="2" Width="95" Grid.ColumnSpan="2" Margin="0,5,0,0"/>
         </Grid>
 
         <!--需要显示的信息-->
@@ -65,9 +66,9 @@
 
             <Label Content="图像信息" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" Width="62" Margin="-5,0,0,0"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Height="18" Width="8" Margin="10,5.2,0,0" Grid.Row="6"/>
-            <Label x:Name="Value_X" Content="0" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="44" Margin="62,0.2,0,0" Grid.RowSpan="2" Grid.Row="6" Grid.ColumnSpan="2"/>
+            <Label x:Name="Value_X" Content="0" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="63" Margin="62,0.2,-0.2,0" Grid.RowSpan="2" Grid.Row="6" Grid.ColumnSpan="2"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Height="18" Width="7" Margin="10,5.2,0,0" Grid.Row="7"/>
-            <Label x:Name="Value_Y" Content="0" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="44" Margin="62,0.2,0,0" Grid.Row="7" Grid.ColumnSpan="2"/>
+            <Label x:Name="Value_Y" Content="0" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="63" Margin="62,0.2,-0.2,0" Grid.Row="7" Grid.ColumnSpan="2"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Width" VerticalAlignment="Top" Height="18" Width="35" Margin="10,5.2,0,0" Grid.Row="8"/>
             <Label x:Name="Value_Width" Content="0" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="44" Margin="62,0.4,0,0" Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height" VerticalAlignment="Top" Height="18" Width="39" Margin="10,5.2,0,0" Grid.Row="9"/>
@@ -75,21 +76,23 @@
         </Grid>
 
         <!--Debug信息-->
-        <Grid HorizontalAlignment="Left" Margin="960,152,0,408" VerticalAlignment="Top" Width="174">
+        <Grid HorizontalAlignment="Left" Margin="915,10,-1,0" VerticalAlignment="Top" Width="230" Height="206">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="19.2"/>
+                <RowDefinition Height="73.6"/>
+                <RowDefinition Height="113.6"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="15*"></ColumnDefinition>
+                <ColumnDefinition Width="62*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="1" Grid.Column="0" Content="Image长宽" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="Debug_Button_Click" Margin="0,2.8,0,-19.4" />
-            <Label x:Name="Debug_Info" Grid.Row="1" Content="Image" HorizontalAlignment="Left" Margin="20,3.2,-10.2,-26.8" VerticalAlignment="Top" Grid.Column="1"/>
-            <Label Content="Debug" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button Grid.Column="0" Content="Debug" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Click="Debug_Button_Click" Height="19" Grid.ColumnSpan="2" />
+            <Label Content="Image" HorizontalAlignment="Left" Margin="0,16.8,0,0" VerticalAlignment="Top" Width="45" Height="26" Grid.Row="1" Grid.ColumnSpan="2"/>
+            <Label Content="BMI" HorizontalAlignment="Left" Margin="0,41.2,0,0" Grid.Row="2" VerticalAlignment="Top" Width="36" Height="26"/>
+            <TextBox x:Name="DebugImage" Grid.Column="1" HorizontalAlignment="Left" Height="71" Margin="0.2,19,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180" Grid.RowSpan="2"/>
+            <TextBox x:Name="DebugBitMapImage" Grid.Column="1" HorizontalAlignment="Left" Height="111" Margin="0.2,2.2,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180"/>
         </Grid>
-        <Button Content="旋转" HorizontalAlignment="Left" Margin="969,477,0,0" VerticalAlignment="Top" Width="75" Click="Flip_Image"/>
 
     </Grid>
 </Window>

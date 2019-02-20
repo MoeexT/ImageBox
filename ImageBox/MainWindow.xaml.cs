@@ -35,6 +35,7 @@ namespace ImageBox
 
         private void Open_Image(object sender, RoutedEventArgs e)
         {
+            // 打开图片按钮的逻辑（打开文件对话框）
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = @"D:\Users\Teemo Nicolas\Downloads",  // 设置对话框的起始打开路径
@@ -54,6 +55,7 @@ namespace ImageBox
 
         private void LoadImage(string fileName)
         {
+            // 加载给定图像
             try
             {
                 this.bitmapImage = new BitmapImage(new Uri(fileName, UriKind.RelativeOrAbsolute));
@@ -72,15 +74,17 @@ namespace ImageBox
 
         private void LoadDefaultImage()
         {
+            // 加载默认图像
             File_Name.Text = "giraffe.jpg";
-            BitmapImage bitmap = new BitmapImage(new Uri("Resources\\giraffe.jpg", UriKind.Relative));
-            CurrentImage.Source = bitmap;
-            Image_Width.Content = bitmap.Width;
-            Image_Height.Content = bitmap.Height;
+            this.bitmapImage = new BitmapImage(new Uri("Resources\\giraffe.jpg", UriKind.Relative));
+            CurrentImage.Source = bitmapImage;
+            Image_Width.Content = bitmapImage.Width;
+            Image_Height.Content = bitmapImage.Height;
         }
 
         private void ClearImage()
         {
+            // 清除图像
             CurrentImage.Source = null;
             File_Name.Text = null;
             Image_Width.Content = 0;
@@ -96,6 +100,8 @@ namespace ImageBox
 
         private void OnMouseMove (object sender, MouseEventArgs e)
         {
+            // 鼠标在Image上滑动的逻辑，目的是计算鼠标在实际图像上的坐标
+
             double width;
             double height;
             try
@@ -107,14 +113,16 @@ namespace ImageBox
             {
                 width = CurrentImage.Width;
                 height = CurrentImage.Height;
+                
             }
-            // TODO
-            Value_X.Content = (int)(e.GetPosition(CurrentImage).X * width / CurrentImage.Width);
-            Value_Y.Content = (int)(e.GetPosition(CurrentImage).Y * height / CurrentImage.Height);
+            // TODO 宽高计算有误，可能是用错了宽高
+            Value_X.Content = (int)e.GetPosition(CurrentImage).X + "," + (int)(e.GetPosition(CurrentImage).X * (width / CurrentImage.Width));
+            Value_Y.Content = (int)e.GetPosition(CurrentImage).Y + "," + (int)(e.GetPosition(CurrentImage).Y * (height / CurrentImage.Height));
         }
 
         private void OnDragEnter (object sender, DragEventArgs e)
         {
+            // 拖拽打开图片
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 //MessageBox.Show();
@@ -124,14 +132,24 @@ namespace ImageBox
 
         private void Debug_Button_Click (object sender, RoutedEventArgs e)
         {
-            Debug_Info.Content = ((int)CurrentImage.ActualWidth).ToString() + ", " + ((int)CurrentImage.ActualHeight).ToString();
+            // 显示图像在Image窗口中实际显示的宽高
+            DebugImage.Text = "ActualWidth(Height): " + ((int)CurrentImage.ActualWidth).ToString() + ", " + ((int)CurrentImage.ActualHeight).ToString() + ";\n"
+                              + "Width(Height): " + ((int)CurrentImage.Width).ToString() + ", " + ((int)CurrentImage.Height).ToString();
+            DebugBitMapImage.Text = "DecodePixelWidth(Height): " + this.bitmapImage.DecodePixelWidth + "," + this.bitmapImage.DecodePixelHeight+ ";\n" +
+                                    "PixelWidth(Height): " + this.bitmapImage.PixelWidth + "," + this.bitmapImage.PixelHeight + ";\n" +
+                                    "Width(Height): " + this.bitmapImage.Width + "," + this.bitmapImage.Height;
         }
 
         private void Flip_Image(object sender, RoutedEventArgs e)
         {
+            // 旋转图像按钮
             // Cv2.Transpose(InputArray【Mat】 src, OutputArray dst);
             // Cv2.Flip(InputArray src, OutputArray dst, FlipMode flipCode);
-            
+            BitmapImage bitmap = new BitmapImage();
+            this.bitmapImage.Rotation = Rotation.Rotate90;
+            bitmap = this.bitmapImage;
+            CurrentImage.Source = bitmap;
+
         }
 
         /*public static Bitmap rotateImage(Bitmap b, float angle)
